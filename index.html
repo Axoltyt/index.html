@@ -4,19 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MDT FIBU - Taryfikator i Raport zatrzymania</title>
-  <body>
-  <header style="text-align:center; margin-bottom: 1em;">
-    <img 
-      src="https://cdn.discordapp.com/icons/1276603715507327056/42c09d3ea80a40315808377942909908.webp" 
-      alt="Logo Avenue" 
-      style="height: 80px; vertical-align: middle; margin-right: 15px;"
-    />
-    <h1 style="display:inline-block; vertical-align: middle; color:#76baff;">MDT FIBU</h1>
-  </header>
-
-  <h2 style="text-align:center; color:#76baff;">FIB Avenue - Taryfikator przestępstw</h2>
-  <!-- reszta strony dalej... -->
-
   <style>
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -30,138 +17,170 @@
     }
     h1, h2, h3 {
       color: #76baff;
+      margin-bottom: 1em;
+    }
+    header {
       text-align: center;
       margin-bottom: 1em;
     }
+    header img {
+      height: 80px;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+    header h1 {
+      display: inline-block;
+      vertical-align: middle;
+      color: #76baff;
+      margin: 0;
+    }
     .section {
-      background: #2a2a3d;
-      border-radius: 10px;
-      padding: 20px;
       margin-bottom: 2em;
-      box-shadow: 0 0 15px rgba(118, 186, 255, 0.4);
+      background: #2a2a4a;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #143366aa;
     }
     label {
       display: block;
-      margin: 10px 0 5px;
+      margin-bottom: 8px;
+      cursor: pointer;
     }
-    input[type=text],
-    input[type=date],
-    textarea {
+    input[type=checkbox] {
+      margin-right: 8px;
+      transform: scale(1.3);
+      vertical-align: middle;
+    }
+    input[type=text], input[type=date], textarea {
       width: 100%;
-      padding: 8px;
+      padding: 7px;
+      margin-top: 5px;
+      margin-bottom: 15px;
       border-radius: 5px;
       border: none;
-      font-size: 1rem;
-      background: #3b3b57;
-      color: #eee;
+      font-size: 1em;
+      box-sizing: border-box;
     }
     textarea {
       resize: vertical;
+      min-height: 80px;
+      font-family: inherit;
     }
     button {
-      background-color: #4582ff;
+      background-color: #76baff;
       border: none;
-      padding: 10px 20px;
-      margin: 10px 10px 0 0;
-      border-radius: 6px;
-      color: white;
-      font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 8px;
+      color: #1e1e2f;
+      font-weight: 600;
       cursor: pointer;
+      margin-right: 10px;
       transition: background-color 0.3s ease;
+      user-select: none;
     }
     button:hover {
-      background-color: #2f5ecc;
+      background-color: #4a7ec8;
     }
     #wynik {
-      background: #121224;
-      border-radius: 8px;
-      padding: 15px;
-      margin-top: 15px;
       white-space: pre-wrap;
+      margin-top: 1em;
+      background: #222244dd;
+      padding: 15px;
+      border-radius: 10px;
+      min-height: 150px;
       font-family: monospace;
-      font-size: 0.95rem;
-      color: #a0a0ff;
-      max-height: 300px;
-      overflow-y: auto;
+      color: #eee;
+      position: relative;
     }
-    .zarzut-lista {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 10px;
-      justify-content: center;
+    .raport-z-tlem {
+      background: url('https://cdn.discordapp.com/icons/1276603715507327056/42c09d3ea80a40315808377942909908.webp') center center no-repeat;
+      background-size: 200px;
+      padding: 20px;
+      border: 1px solid #444;
+      margin-bottom: 1em;
+      color: #fff;
+      white-space: pre-wrap;
+      border-radius: 10px;
+      min-height: 150px;
+      position: relative;
     }
-    .zarzut-item {
-      background: #444466;
-      padding: 10px 15px;
-      border-radius: 7px;
-      flex: 1 1 250px;
-      max-width: 300px;
+    footer {
+      text-align: center;
+      color: #666;
+      margin-top: 3em;
+      font-size: 0.9em;
+      line-height: 1.4em;
+      user-select: none;
     }
-    .zarzut-item label {
-      cursor: pointer;
+    input[readonly] {
+      background: #444;
+      border: none;
+      color: #ddd;
+      font-family: monospace;
     }
   </style>
 </head>
 <body>
-  <h1>MDT FIBU</h1>
-  <h2>FIB Avenue - Taryfikator przestępstw</h2>
+  <header>
+    <img
+      src="https://cdn.discordapp.com/icons/1276603715507327056/42c09d3ea80a40315808377942909908.webp"
+      alt="Logo Avenue"
+    />
+    <h1>MDT FIBU</h1>
+  </header>
+
+  <h2 style="text-align:center; color:#76baff;">FIB Avenue - Taryfikator przestępstw</h2>
 
   <div class="section" id="taryfikator">
-    <h3>Przestępstwa zwykłe</h3>
-    <div id="zwykle" class="zarzut-lista"></div>
+    <h3>Zarzuty zwykłe</h3>
+    <div id="zwykle"></div>
 
-    <h3>Przestępstwa federalne</h3>
-    <div id="federalne" class="zarzut-lista"></div>
+    <h3>Zarzuty federalne</h3>
+    <div id="federalne"></div>
 
     <button onclick="pokazZarzuty()">Pokaż wybrane zarzuty</button>
     <button onclick="wyczyscZarzuty()">Wyczyść zarzuty</button>
+  </div>
 
-    <h3>Wygeneruj szczegółowy raport zatrzymania</h3>
+  <div class="section" id="raport-zatrzymania">
+    <h3>Raport zatrzymania (bardzo szczegółowy)</h3>
     <form id="formularz-raportu" onsubmit="event.preventDefault(); generujPlik();">
       <label>
-        Imię i nazwisko zatrzymującego:<br />
+        Imię i nazwisko zatrzymującego (wymagane):
         <input type="text" id="zatrzymujacy" required />
       </label>
-
       <label>
-        Podpis zatrzymującego:<br />
-        <input type="text" id="podpisZatrzymujacego" placeholder="Podpis" required />
+        Podpis zatrzymującego (wymagane):
+        <input type="text" id="podpisZatrzymujacego" required />
       </label>
-
       <label>
-        Imię i nazwisko zatrzymanego:<br />
+        Imię i nazwisko zatrzymanego (wymagane):
         <input type="text" id="zatrzymany" required />
       </label>
-
       <label>
-        Data zatrzymania:<br />
+        Data zatrzymania (wymagane):
         <input type="date" id="dataZatrzymania" required />
       </label>
-
       <label>
-        Miejsce zatrzymania:<br />
-        <input type="text" id="miejsceZatrzymania" placeholder="np. FIB Avenue" required />
+        Miejsce zatrzymania (wymagane):
+        <input type="text" id="miejsceZatrzymania" required />
       </label>
-
       <label>
-        Szczegółowy opis zatrzymania:<br />
-        <textarea id="opisZatrzymania" rows="5" placeholder="Opis zdarzenia..." required></textarea>
+        Opis zatrzymania (wymagane):
+        <textarea id="opisZatrzymania" required></textarea>
       </label>
-
       <label>
-        Dodatkowe uwagi:<br />
-        <textarea id="uwagi" rows="3" placeholder="Uwagi"></textarea>
+        Dodatkowe uwagi (opcjonalne):
+        <textarea id="uwagi"></textarea>
       </label>
-
-      <button type="submit">Generuj plik raportu</button>
+      <button type="submit">Generuj raport</button>
       <button type="button" onclick="wyczyscFormularz()">Wyczyść formularz</button>
     </form>
 
-    <pre id="wynik"></pre>
+    <div id="wynik"></div>
   </div>
 
-  <footer style="text-align:center; color:#666; margin-top:3em;">
+  <footer>
     Strona stworzona przez Axol<br />
     001 FIBU: Travis White<br />
     002 FIBU: Michlin Magazin
