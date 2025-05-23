@@ -1,0 +1,15 @@
+{
+  "zwykle": [
+    { "nazwa": "Włamanie", "grzywna": 5000, "wiezienie": 10 },
+    { "nazwa": "Pobicie", "grzywna": 2500, "wiezienie": 5 },
+    { "nazwa": "Kradzież pojazdu", "grzywna": 7000, "wiezienie": 12 },
+    { "nazwa": "Ucieczka przed policją", "grzywna": 4000, "wiezienie": 8 }
+  ],
+  "federalne": [
+    { "nazwa": "Korupcja", "grzywna": 20000, "wiezienie": 25 },
+    { "nazwa": "Zdrada stanu", "grzywna": 50000, "wiezienie": 60 },
+    { "nazwa": "Morderstwo funkcjonariusza", "grzywna": 35000, "wiezienie": 45 },
+    { "nazwa": "Handel bronią", "grzywna": 30000, "wiezienie": 35 },
+    { "nazwa": "Terroryzm", "grzywna": 100000, "wiezienie": 99 }
+  ]
+}
