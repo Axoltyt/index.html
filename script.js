@@ -1,69 +1,49 @@
-// Przykładowe przestępstwa (zwykłe i federalne)
-const zwyklePrzestepstwa = [
-  { id: "kradziez", nazwa: "Kradzież", grzywna: 1000, wiezienie: 3 },
-  { id: "napad", nazwa: "Napad", grzywna: 5000, wiezienie: 12 },
-  { id: "posiadanie_narkotykow", nazwa: "Posiadanie narkotyków", grzywna: 2000, wiezienie: 6 },
-  { id: "zniewaga", nazwa: "Zniewaga funkcjonariusza", grzywna: 1500, wiezienie: 2 },
-  { id: "korupcja", nazwa: "Korupcja", grzywna: 10000, wiezienie: 24 },
-  { id: "zdrada_stanu", nazwa: "Zdrada stanu", grzywna: 50000, wiezienie: 120 },
-  { id: "nielegalne_posiadanie_broni", nazwa: "Nielegalne posiadanie broni", grzywna: 8000, wiezienie: 18 }
+// Dane taryfikatora - przykładowe przestępstwa (możesz rozbudować)
+const zarzutyZwykle = [
+  { nazwa: "Kradzież", grzywna: 1500, wiezienie: 3 },
+  { nazwa: "Pobicie", grzywna: 3000, wiezienie: 6 },
+  { nazwa: "Posiadanie narkotyków", grzywna: 2000, wiezienie: 4 },
+  { nazwa: "Zniszczenie mienia", grzywna: 2500, wiezienie: 5 },
+  { nazwa: "Korupcja", grzywna: 8000, wiezienie: 24 },
+  { nazwa: "Zdrada stanu", grzywna: 12000, wiezienie: 36 },
+  // dodaj więcej...
 ];
 
-const federalnePrzestepstwa = [
-  { id: "terrorystyczne_akty", nazwa: "Akty terrorystyczne", grzywna: 100000, wiezienie: 240 },
-  { id: "pranie_pieniedzy", nazwa: "Pranie pieniędzy", grzywna: 20000, wiezienie: 36 },
-  { id: "handel_narkotykami", nazwa: "Handel narkotykami", grzywna: 30000, wiezienie: 48 },
-  { id: "fałszerstwo", nazwa: "Fałszerstwo dokumentów", grzywna: 15000, wiezienie: 24 },
-  { id: "szpiegostwo", nazwa: "Szpiegostwo", grzywna: 50000, wiezienie: 60 },
-  { id: "obraza", nazwa: "Obraza Funkcjonariusza Federalnego", grzywna: 25000, wiezienie: 25 }
+const zarzutyFederalne = [
+  { nazwa: "Przemyt broni", grzywna: 15000, wiezienie: 48 },
+  { nazwa: "Terroryzm", grzywna: 50000, wiezienie: 120 },
+  { nazwa: "Pranie brudnych pieniędzy", grzywna: 30000, wiezienie: 60 },
+  { nazwa: "Szpiegostwo", grzywna: 40000, wiezienie: 100 },
+  { nazwa: "Obraza Funkcjonariusza Federalnego", grzywna: 25000, wiezienie: 25 }
+  // dodaj więcej...
 ];
 
 let wybraneZarzuty = [];
 
-// Funkcja generująca listę przestępstw jako checkboxy
 function wypelnijTaryfikator() {
-  const zwykleDiv = document.getElementById("zwykle");
-  const federalneDiv = document.getElementById("federalne");
+  const divZwykle = document.getElementById("zwykle");
+  const divFederalne = document.getElementById("federalne");
 
-  zwykleDiv.innerHTML = "";
-  federalneDiv.innerHTML = "";
-
-  zwyklePrzestepstwa.forEach((z) => {
-    const el = document.createElement("div");
-    el.className = "zarzut-item";
-    el.innerHTML = `
-      <label>
-        <input type="checkbox" value="${z.id}" />
-        <strong>${z.nazwa}</strong><br />
-        Grzywna: $${z.grzywna} | Więzienie: ${z.wiezienie} miesięcy
-      </label>
-    `;
-    zwykleDiv.appendChild(el);
+  zarzutyZwykle.forEach((z, i) => {
+    const label = document.createElement("label");
+    label.innerHTML = `<input type="checkbox" value="${z.nazwa}" /> ${z.nazwa} — Grzywna: $${z.grzywna}, Więzienie: ${z.wiezienie} mies.`;
+    divZwykle.appendChild(label);
   });
 
-  federalnePrzestepstwa.forEach((z) => {
-    const el = document.createElement("div");
-    el.className = "zarzut-item";
-    el.innerHTML = `
-      <label>
-        <input type="checkbox" value="${z.id}" />
-        <strong>${z.nazwa}</strong><br />
-        Grzywna: $${z.grzywna} | Więzienie: ${z.wiezienie} miesięcy
-      </label>
-    `;
-    federalneDiv.appendChild(el);
+  zarzutyFederalne.forEach((z, i) => {
+    const label = document.createElement("label");
+    label.innerHTML = `<input type="checkbox" value="${z.nazwa}" /> ${z.nazwa} — Grzywna: $${z.grzywna}, Więzienie: ${z.wiezienie} mies.`;
+    divFederalne.appendChild(label);
   });
 }
 
-// Znajdź zarzut po id
-function znajdzZarzut(id) {
+function znajdzZarzut(nazwa) {
   return (
-    zwyklePrzestepstwa.find((z) => z.id === id) ||
-    federalnePrzestepstwa.find((z) => z.id === id)
+    zarzutyZwykle.find((z) => z.nazwa === nazwa) ||
+    zarzutyFederalne.find((z) => z.nazwa === nazwa)
   );
 }
 
-// Pokaż wybrane zarzuty w alert (można zmienić na inne UI)
 function pokazZarzuty() {
   wybraneZarzuty = [];
   const checkboxes = document.querySelectorAll(
@@ -88,76 +68,47 @@ function pokazZarzuty() {
   alert(tekst);
 }
 
-// Wyczyść wszystkie zaznaczone checkboxy
 function wyczyscZarzuty() {
   const checkboxes = document.querySelectorAll(
     "#zwykle input[type=checkbox], #federalne input[type=checkbox]"
   );
-  checkboxes.forEach((cb) => {
-    cb.checked = false;
-  });
+  checkboxes.forEach((cb) => (cb.checked = false));
   wybraneZarzuty = [];
-  document.getElementById("wynik").textContent = "";
+  document.getElementById("wynik").innerHTML = "";
   wyczyscFormularz();
 }
 
-// Wyczyść formularz raportu
-function wyczyscFormularz() {
-  document.getElementById("formularz-raportu").reset();
-  document.getElementById("wynik").textContent = "";
-}
+// Generowanie raportu zatrzymania i linku do udostępnienia
 
-// Generowanie pliku raportu zatrzymania
 function generujPlik() {
-  wybraneZarzuty = [];
-  const checkboxes = document.querySelectorAll(
-    "#zwykle input[type=checkbox], #federalne input[type=checkbox]"
-  );
-  checkboxes.forEach((cb) => {
-    if (cb.checked) {
-      const zarzut = znajdzZarzut(cb.value);
-      if (zarzut) wybraneZarzuty.push(zarzut);
-    }
-  });
-
   if (wybraneZarzuty.length === 0) {
-    alert("Wybierz co najmniej jeden zarzut!");
+    alert("Najpierw wybierz przynajmniej jeden zarzut z taryfikatora!");
     return;
   }
 
   const zatrzymujacy = document.getElementById("zatrzymujacy").value.trim();
-  const podpisZatrzymujacego = document
-    .getElementById("podpisZatrzymujacego")
-    .value.trim();
+  const podpisZatrzymujacego = document.getElementById("podpisZatrzymujacego").value.trim();
   const zatrzymany = document.getElementById("zatrzymany").value.trim();
-  const data = document.getElementById("dataZatrzymania").value;
-  const miejsce = document.getElementById("miejsceZatrzymania").value.trim();
-  const opis = document.getElementById("opisZatrzymania").value.trim();
+  const dataZatrzymania = document.getElementById("dataZatrzymania").value;
+  const miejsceZatrzymania = document.getElementById("miejsceZatrzymania").value.trim();
+  const opisZatrzymania = document.getElementById("opisZatrzymania").value.trim();
   const uwagi = document.getElementById("uwagi").value.trim();
 
-  if (
-    !zatrzymujacy ||
-    !podpisZatrzymujacego ||
-    !zatrzymany ||
-    !data ||
-    !miejsce ||
-    !opis
-  ) {
-    alert("Wypełnij wszystkie pola oznaczone jako wymagane.");
+  if (!zatrzymujacy || !podpisZatrzymujacego || !zatrzymany || !dataZatrzymania || !miejsceZatrzymania || !opisZatrzymania) {
+    alert("Proszę wypełnić wszystkie wymagane pola.");
     return;
   }
 
-  let tresc = `=== RAPORT ZATRZYMANIA ===\n\n`;
-  tresc += `Data: ${data}\n`;
-  tresc += `Miejsce zatrzymania: ${miejsce}\n\n`;
+  let tresc = "";
+  tresc += "==== RAPORT ZATRZYMANIA ====\n\n";
+  tresc += `Zatrzymujący: ${zatrzymujacy}\n`;
+  tresc += `Podpis zatrzymującego: ${podpisZatrzymujacego}\n`;
+  tresc += `Zatrzymany: ${zatrzymany}\n`;
+  tresc += `Data zatrzymania: ${dataZatrzymania}\n`;
+  tresc += `Miejsce zatrzymania: ${miejsceZatrzymania}\n\n`;
+  tresc += `Opis zatrzymania:\n${opisZatrzymania}\n\n`;
 
-  tresc += `Zatrzymujący:\n  Imię i nazwisko: ${zatrzymujacy}\n  Podpis: ${podpisZatrzymujacego}\n\n`;
-
-  tresc += `Zatrzymany:\n  Imię i nazwisko: ${zatrzymany}\n\n`;
-
-  tresc += `Opis zatrzymania:\n${opis}\n\n`;
-
-  tresc += `Zarzuty:\n`;
+  tresc += "Zarzuty:\n";
   wybraneZarzuty.forEach((z, i) => {
     tresc += `  ${i + 1}. ${z.nazwa} — Grzywna: $${z.grzywna}, Więzienie: ${z.wiezienie} miesięcy\n`;
   });
@@ -166,21 +117,44 @@ function generujPlik() {
     tresc += `\nDodatkowe uwagi:\n${uwagi}\n`;
   }
 
-  tresc += `\n--- Koniec raportu ---\n`;
+  tresc += "\n===========================\n";
 
-  document.getElementById("wynik").textContent = tresc;
+  // Kodowanie do URL
+  const encoded = encodeURIComponent(tresc);
+  const dataUrl = `data:text/plain;charset=utf-8,${encoded}`;
 
-  // Pobierz plik txt z raportem
-  const blob = new Blob([tresc], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `Raport_zatrzymania_${zatrzymany}_${data}.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
+  const wynik = document.getElementById("wynik");
+
+  const linkHTML = `
+    <p><strong>Link do raportu (kliknij, by otworzyć):</strong></p>
+    <input type="text" value="${dataUrl}" id="linkRaportu" readonly style="width:100%; padding:5px; font-family: monospace;" />
+    <button onclick="skopiujLink()">Skopiuj link</button><br><br>
+    <a href="${dataUrl}" target="_blank" style="color:#4af;">➡️ Otwórz raport w nowej karcie</a>
+  `;
+
+  wynik.innerHTML = `
+    <div class="raport-z-tlem">
+      <pre>${tresc}</pre>
+    </div>
+    ${linkHTML}
+  `;
 }
 
-// Inicjalizacja po załadowaniu strony
+function skopiujLink() {
+  const input = document.getElementById("linkRaportu");
+  input.select();
+  input.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(input.value).then(() => {
+    alert("Link został skopiowany!");
+  });
+}
+
+function wyczyscFormularz() {
+  document.getElementById("formularz-raportu").reset();
+  document.getElementById("wynik").innerHTML = "";
+  wyczyscZarzuty();
+}
+
 window.onload = () => {
   wypelnijTaryfikator();
 };
