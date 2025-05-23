@@ -14,7 +14,8 @@ const federalnePrzestepstwa = [
   { id: "pranie_pieniedzy", nazwa: "Pranie pieniędzy", grzywna: 20000, wiezienie: 36 },
   { id: "handel_narkotykami", nazwa: "Handel narkotykami", grzywna: 30000, wiezienie: 48 },
   { id: "fałszerstwo", nazwa: "Fałszerstwo dokumentów", grzywna: 15000, wiezienie: 24 },
-  { id: "szpiegostwo", nazwa: "Szpiegostwo", grzywna: 50000, wiezienie: 60 }
+  { id: "szpiegostwo", nazwa: "Szpiegostwo", grzywna: 50000, wiezienie: 60 },
+    { id: "szpiegostwo", nazwa: "Obraza Funkcjonariusza Federalnego", grzywna: 25000, wiezienie: 25 }
 ];
 
 let wybraneZarzuty = [];
