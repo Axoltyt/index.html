@@ -1,11 +1,62 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #121212;
   color: #fff;
+}
+
+#login-screen {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #0f0f0f;
+}
+
+.login-box {
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+  text-align: center;
+  width: 300px;
+}
+
+.login-box input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: #2a2a2a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: #1f6feb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background: #1155cc;
+}
+
+#login-error {
+  color: #f33;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.logo {
+  height: 60px;
+  margin-bottom: 10px;
 }
 
 header {
@@ -23,14 +74,6 @@ header {
   margin-bottom: 10px;
 }
 
-.logo {
-  height: 60px;
-}
-
-.logo-small {
-  height: 50px;
-}
-
 h1 {
   margin: 0;
   font-size: 28px;
@@ -38,11 +81,6 @@ h1 {
 
 main {
   padding: 30px;
-  flex: 1;
-}
-
-.charges {
-  margin-bottom: 20px;
 }
 
 h2 {
@@ -54,10 +92,13 @@ h2 {
 label {
   display: block;
   margin: 5px 0;
+  font-weight: 500;
 }
 
 input[type="checkbox"] {
   margin-right: 8px;
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 .buttons {
@@ -74,6 +115,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
 button:hover {
@@ -86,6 +128,7 @@ button:hover {
   border-radius: 5px;
   border: 1px solid #333;
   margin-top: 20px;
+  white-space: pre-wrap;
 }
 
 footer {
@@ -94,4 +137,54 @@ footer {
   padding: 10px;
   font-size: 14px;
   border-top: 2px solid #333;
+}
+
+.tab-btn {
+  background: #1f6feb;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  margin: 0 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: #1155cc;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.admin-section {
+  margin-top: 20px;
+}
+
+.admin-section label {
+  font-weight: normal;
+}
+
+#add-charge-form input,
+#add-charge-form select {
+  margin: 6px 8px 10px 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: none;
+  width: 180px;
+}
+
+.logout-btn {
+  background: #cc0000;
+  margin-left: 15px;
+}
+
+.logout-btn:hover {
+  background: #a50000;
 }
