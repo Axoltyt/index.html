@@ -13,7 +13,7 @@ const zarzutyFederalne = [
   { nazwa: "Terroryzm", grzywna: 50000, wiezienie: 120 },
   { nazwa: "Pranie brudnych pieniędzy", grzywna: 30000, wiezienie: 60 },
   { nazwa: "Szpiegostwo", grzywna: 40000, wiezienie: 100 },
-  { nazwa: "Obraza Funkcjonariusza Federalnego", grzywna: 25000, wiezienie: 25 },
+  { nazwa: "Obraza Funkcjonariusza Federalnego", grzywna: 0, wiezienie: Kara Smierći },
   { nazwa: "Zdrada stanu", grzywna: 12000, wiezienie: 36 },
   { nazwa: "Korupcja", grzywna: 8000, wiezienie: 24 }
   // dodaj więcej...
