@@ -4,8 +4,7 @@ const zarzutyZwykle = [
   { nazwa: "Pobicie", grzywna: 3000, wiezienie: 6 },
   { nazwa: "Posiadanie narkotyków", grzywna: 2000, wiezienie: 4 },
   { nazwa: "Zniszczenie mienia", grzywna: 2500, wiezienie: 5 },
-  { nazwa: "Korupcja", grzywna: 8000, wiezienie: 24 },
-  { nazwa: "Zdrada stanu", grzywna: 12000, wiezienie: 36 },
+  { nazwa: "Podszywanie sie pod frakcje", grzywna: 12000, wiezienie: 36 }
   // dodaj więcej...
 ];
 
@@ -14,7 +13,9 @@ const zarzutyFederalne = [
   { nazwa: "Terroryzm", grzywna: 50000, wiezienie: 120 },
   { nazwa: "Pranie brudnych pieniędzy", grzywna: 30000, wiezienie: 60 },
   { nazwa: "Szpiegostwo", grzywna: 40000, wiezienie: 100 },
-  { nazwa: "Obraza Funkcjonariusza Federalnego", grzywna: 25000, wiezienie: 25 }
+  { nazwa: "Obraza Funkcjonariusza Federalnego", grzywna: 25000, wiezienie: 25 },
+  { nazwa: "Zdrada stanu", grzywna: 12000, wiezienie: 36 },
+  { nazwa: "Korupcja", grzywna: 8000, wiezienie: 24 }
   // dodaj więcej...
 ];
 
